@@ -1,4 +1,5 @@
-import { Box, Briefcase, LayoutDashboard, ShoppingBasket, Truck, Users } from "lucide-react"
+import { Box, Briefcase, LayoutDashboard, ShoppingBasket, Truck, Users } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 export default function NavBar() {
     return (
@@ -10,52 +11,64 @@ export default function NavBar() {
             <div className="w-full pt-8">
                 <ul className="flex flex-col gap-2">
                     <li>
-                        <button className="p-2 rounded-lg w-full text-left">
-                            <div className="flex items-center gap-2 bg-[#D2C9BD] p-2 rounded-lg">
-                                <LayoutDashboard />
-                                <span>Dashboard</span>
-                            </div>
-                        </button>
+                        <NavLink to="/dashboard">
+                            <button className="p-2 rounded-lg w-full text-left">
+                                <div className="flex items-center gap-2 bg-[#D2C9BD] p-2 rounded-lg">
+                                    <LayoutDashboard />
+                                    <span>Dashboard</span>
+                                </div>
+                            </button>
+                        </NavLink>
                     </li>
                     <li>
-                        <button className="p-2 rounded-lg w-full text-left">
-                            <div className="flex items-center gap-2 p-2 rounded-lg">
-                                <Users />
-                                <span>Customers</span>
-                            </div>
-                        </button>
+                        <NavLink to="/customers">
+                            <button className="p-2 rounded-lg w-full text-left">
+                                <div className="flex items-center gap-2 p-2 rounded-lg">
+                                    <Users />
+                                    <span>Customers</span>
+                                </div>
+                            </button>
+                        </NavLink>
                     </li>
                     <li>
-                        <button className="p-2 rounded-lg w-full text-left">
-                            <div className="flex items-center gap-2 p-2 rounded-lg">
-                                <Briefcase />
-                                <span>Salesman</span>
-                            </div>
-                        </button>
+                        <NavLink to="/salesman">
+                            <button className="p-2 rounded-lg w-full text-left">
+                                <div className="flex items-center gap-2 p-2 rounded-lg">
+                                    <Briefcase />
+                                    <span>Salesman</span>
+                                </div>
+                            </button>
+                        </NavLink>
                     </li>
                     <li>
-                        <button className="p-2 rounded-lg w-full text-left">
-                            <div className="flex items-center gap-2 p-2 rounded-lg">
-                                <Box />
-                                <span>Product</span>
-                            </div>
-                        </button>
+                        <NavLink to="/products">
+                            <button className="p-2 rounded-lg w-full text-left">
+                                <div className="flex items-center gap-2 p-2 rounded-lg">
+                                    <Box />
+                                    <span>Product</span>
+                                </div>
+                            </button>
+                        </NavLink>
                     </li>
                     <li>
-                        <button className="p-2 rounded-lg w-full text-left">
-                            <div className="flex items-center gap-2 p-2 rounded-lg">
-                                <Truck />
-                                <span>Distributor</span>
-                            </div>
-                        </button>
+                        <NavLink to="/distributors">
+                            <button className="p-2 rounded-lg w-full text-left">
+                                <div className="flex items-center gap-2 p-2 rounded-lg">
+                                    <Truck />
+                                    <span>Distributor</span>
+                                </div>
+                            </button>
+                        </NavLink>
                     </li>
                     <li>
-                        <button className="p-2 rounded-lg w-full text-left">
-                            <div className="flex items-center gap-2 p-2 rounded-lg">
-                                <ShoppingBasket />
-                                <span>Orders</span>
-                            </div>
-                        </button>
+                        <NavLink to="orders">
+                            <button className="p-2 rounded-lg w-full text-left">
+                                <div className="flex items-center gap-2 p-2 rounded-lg">
+                                    <ShoppingBasket />
+                                    <span>Orders</span>
+                                </div>
+                            </button>
+                        </NavLink>
                     </li>
                 </ul>
             </div>
