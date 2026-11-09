@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 
 export default function NavBar() {
     return (
-        <div className="flex flex-col justify-between gap-3 bg-[#E6DED2] h-full w-65 p-8 text-[#211400]">
-            <div>
+        <div className="flex flex-col justify-between gap-3 bg-[#E6DED2] h-full w-65 text-[#211400]">
+            <div className=" p-8">
                 <div className="flex items-center">
                     <img src="./logo-1.png" alt="" className="w-15" />
                     <div className="font-bold text-xl">Meuko</div>
@@ -74,7 +74,7 @@ export default function NavBar() {
                     </ul>
                 </div>
             </div>
-            <div className="flex gap-2 items-center justify-between w-full hover:cursor-pointer">
+            <div className="flex gap-2 p-3 mb-3 items-center justify-between w-full hover:cursor-pointer">
                 <div className="flex gap-2 items-center">
                     <img src="/admin.jpeg" alt="" className="w-11 rounded-2xl border-2 border-white" />
                     <div className="flex flex-col">
