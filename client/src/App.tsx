@@ -6,10 +6,12 @@ import Orders from "./components/page/Orders";
 import Products from "./components/page/Product";
 import Salesman from "./components/page/Salesman";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./components/authPages/login";
 
 function App() {
   return (
     <div className="flex h-screen w-screen bg-[#f2efeb]">
+      <Login />
       <BrowserRouter>
         <NavBar />
         <Routes>
