@@ -43,7 +43,10 @@ export const adminLogin = async (req: Request, res: Response) => {
             maxAge: 60 * 60 * 1000
         })
 
-        return res.status(200).json({ success: true, message: "Login successfull!" })
+        return res.status(200).json({
+            success: true,
+            message: "Login successfull!"
+        })
     } catch (error) {
         return res.status(500).json({ success: false, message: "internal server error!", data: null })
     }

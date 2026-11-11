@@ -1,4 +1,19 @@
+import { useState } from "react"
+import { useLoginAdmin } from "../../lib/loginApi";
+
 export default function Login() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const loginAdmin = useLoginAdmin({ setEmail, setPassword })
+
+    const handleLoginAdmin = () => {
+        loginAdmin.mutate({
+            email,
+            password
+        })
+    }
+
     return (
         <div className="w-screen bg-[url('/LoginPage.png')] bg-cover bg-center bg-no-repeat">
             <div className="bg-white w-[50%] h-full p-10">
@@ -11,13 +26,23 @@ export default function Login() {
                     <div>
                         <div>
                             <span>Email</span>
-                            <input type="email" placeholder="ENter your Email" />
+                            <input
+                                type="email"
+                                placeholder="Enter your Email"
+                                value={email}
+                                onChange={e => setEmail(e.target.value)}
+                            />
                         </div>
                     </div>
                     <div>
                         <div>
                             <span>Password</span>
-                            <input type="password" placeholder="Enter your Password" />
+                            <input
+                                type="text"
+                                placeholder="Enter your Password"
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
+                            />
                         </div>
                     </div>
                     <div>
@@ -31,7 +56,9 @@ export default function Login() {
                     </div>
                 </div>
                 <div>
-                    <button>
+                    <button
+                        onClick={handleLoginAdmin}
+                    >
                         Login
                     </button>
                 </div>
