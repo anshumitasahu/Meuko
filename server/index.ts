@@ -2,6 +2,7 @@ console.log("Hello via Bun!");
 
 import express, { type Express, type Request, type Response } from 'express';
 import cors from "cors";
+import cookieParser from 'cookie-parser';
 import adminAuthRoutes from "./Routes/adminLoginRoutes"
 
 const app: Express = express();
@@ -10,6 +11,7 @@ const PORT = 3000;
 app.use(cors());
 
 app.use(express.json());
+app.use(cookieParser())
 
 app.use("/auth", adminAuthRoutes);
 
