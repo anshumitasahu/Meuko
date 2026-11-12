@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { generateToken } from "../utils/jwt";
+import { generateToken } from "../../utils/jwt";
 
 if (!process.env.ADMIN_EMAIL || !process.env.ADMIN_PASSWORD) {
     throw new Error("Admin credentials not found")
