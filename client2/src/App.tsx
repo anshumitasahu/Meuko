@@ -1,9 +1,15 @@
+import Customer from "./components/Customer"
+import Distributor from "./components/Distributor"
+import Orders from "./components/Order"
+
 function App() {
 
   return (
     <>
       <div>
-        Hello
+        <Customer />
+        <Distributor />
+        <Orders />
       </div>
     </>
   )
