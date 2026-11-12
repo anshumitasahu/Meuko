@@ -1,9 +1,28 @@
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import { useLoginSalesman } from "../../lib/loginApi";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const loginSalesMan = useLoginSalesman({ setEmail, setPassword })
+
+    const handleLoginSalesman = () => {
+        loginSalesMan.mutate({
+            email,
+            password
+        })
+    }
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (loginSalesMan.isSuccess) {
+            navigate("/customers")
+        }
+    }, [loginSalesMan.isSuccess])
+
     return (
         <div>
             <input
@@ -19,7 +38,7 @@ export default function Login() {
                 className="border"
             />
             <button
-                
+                onClick={handleLoginSalesman}
             >
                 Login
             </button>
