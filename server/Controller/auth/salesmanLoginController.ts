@@ -1,7 +1,13 @@
 import type { Request, Response } from "express";
 import { prisma } from "../../lib/prismaClient";
 import bcrypt from "bcryptjs"
+import { generateToken } from "../../utils/jwt";
 
+const node_env = process.env.NODE_ENV;
+
+if (!node_env) {
+    throw new Error("NODE_ENV not found in env")
+}
 
 export const salesmanLogin = async (req: Request, res: Response) => {
     try {
@@ -37,6 +43,15 @@ export const salesmanLogin = async (req: Request, res: Response) => {
             })
         }
 
+        const token = generateToken(loggedSalesman.id, "Salesman");
+
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: node_env === "production",
+            sameSite: "lax",
+            maxAge: 60 * 60 * 1000
+        })
+
         return res.status(200).json({
             success: true,
             message: "Salesman successfully logged in",
@@ -56,5 +71,3 @@ export const salesmanLogin = async (req: Request, res: Response) => {
         })
     }
 }
-
-// throwing away ? where ??! in dustbin?

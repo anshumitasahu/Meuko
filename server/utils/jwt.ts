@@ -6,8 +6,8 @@ if (!secret) {
 }
 const expiry = "1h";
 
-export const generateToken = (role: 'Admin') => {
-    const token = jwt.sign({ role }, secret, { expiresIn: expiry });
+export const generateToken = (id: Number, role: 'Admin' | 'Salesman') => {
+    const token = jwt.sign({ id, role }, secret, { expiresIn: expiry });
 
     return token;
 };

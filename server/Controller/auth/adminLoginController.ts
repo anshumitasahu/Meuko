@@ -34,7 +34,7 @@ export const adminLogin = async (req: Request, res: Response) => {
             })
         }
 
-        const token = generateToken("Admin");
+        const token = generateToken(1, "Admin");
 
         res.cookie("token", token, {
             httpOnly: true,

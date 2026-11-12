@@ -10,11 +10,9 @@ export const middleware = (req: Request, res: Response, next: NextFunction) => {
     try {
         const token = req.cookies.token;
 
-        console.log(token);
-
         if (!token) {
             return res.status(401).json({
-                succes: false,
+                success: false,
                 message: "Can't found token from cookies"
             })
         }
@@ -27,10 +25,11 @@ export const middleware = (req: Request, res: Response, next: NextFunction) => {
         }
 
         const decoded = jwt.verify(token, jwtSecret) as {
-            role: "Admin"
+            id: number,
+            role: 'Admin' | 'Salesman'
         }
 
-        if (decoded.role !== "Admin") {
+        if (decoded.role !== 'Admin' && decoded.role !== 'Salesman') {
             return res.status(403).json({
                 success: false,
                 message: "Not a valid role"
