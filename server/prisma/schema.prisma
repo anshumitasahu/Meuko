@@ -33,3 +33,15 @@ model Salesman {
   createdBy String   @default("system")
   updatedBy String   @default("system")
 }
+
+model Products {
+  id    Int    @id @default(autoincrement())
+  name  String
+  price Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  isActive  Boolean  @default(true)
+  createdBy String   @default("system")
+  updatedBy String   @default("system")
+}
