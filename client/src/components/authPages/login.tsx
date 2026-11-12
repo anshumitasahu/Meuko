@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useLoginAdmin } from "../../lib/loginApi";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -13,6 +14,14 @@ export default function Login() {
             password
         })
     }
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (loginAdmin.isSuccess) {
+            navigate("/dashboard")
+        }
+    }, [loginAdmin.isSuccess])
 
     return (
         <div className="w-screen bg-[url('/LoginPage.png')] bg-cover bg-center bg-no-repeat">

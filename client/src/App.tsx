@@ -11,10 +11,10 @@ import Login from "./components/authPages/login";
 function App() {
   return (
     <div className="flex h-screen w-screen bg-[#f2efeb]">
-      <Login />
-      {/* <BrowserRouter>
-        <NavBar />
+      <BrowserRouter>
+        {/* <NavBar /> */}
         <Routes>
+          <Route path="/" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/customers" element={<Customer />} />
           <Route path="/salesman" element={<Salesman />} />
@@ -22,7 +22,7 @@ function App() {
           <Route path="/distributors" element={<Distributors />} />
           <Route path="/orders" element={<Orders />} />
         </Routes>
-      </BrowserRouter> */}
+      </BrowserRouter>
     </div>
   )
 }
