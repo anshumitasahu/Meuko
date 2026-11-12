@@ -3,7 +3,8 @@ console.log("Hello via Bun!");
 import express, { type Express, type Request, type Response } from 'express';
 import cors from "cors";
 import cookieParser from 'cookie-parser';
-import adminAuthRoutes from "./Routes/adminLoginRoutes"
+import adminAuthRoutes from "./Routes/authRoutes/adminLoginRoutes";
+import salesmanRoutes from "./Routes/SalesmanRoutes";
 
 const app: Express = express();
 const PORT = 3000;
@@ -19,7 +20,7 @@ app.use(express.json());
 app.use(cookieParser())
 
 app.use("/auth", adminAuthRoutes);
-
+app.use("/api/salesman", salesmanRoutes);
 
 app.get("/", (req: Request, res: Response) => {
     res.json({
