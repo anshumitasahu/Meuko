@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="flex h-screen w-screen bg-[#f2efeb]">
       <BrowserRouter>
-        {/* <NavBar /> */}
+        <NavBar />
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
