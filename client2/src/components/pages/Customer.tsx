@@ -3,9 +3,8 @@
 export default function Customer() {
     return (
         <div>
-        View customer
-
-            {/* Table only */}
+            View customer
+            {/* Customer table */}
         </div>
     )
 }
