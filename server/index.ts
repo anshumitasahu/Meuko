@@ -5,15 +5,16 @@ import cors from "cors";
 import cookieParser from 'cookie-parser';
 import adminAuthRoutes from "./Routes/authRoutes/adminLoginRoutes";
 import salesmanRoutes from "./Routes/SalesmanRoutes";
+import salesmanLoginRoutes from './Routes/authRoutes/salesmanLoginRoutes';
 
 const app: Express = express();
 const PORT = 3000;
 
 app.use(cors(
-    // {
-    //     origin: ["http://localhost:5173", "http://localhost:5174"],
-    //     credentials: true
-    // }
+    {
+        origin: ["http://localhost:5173", "http://localhost:5174"],
+        credentials: true
+    }
 ));
 
 app.use(express.json());
@@ -21,6 +22,7 @@ app.use(cookieParser())
 
 app.use("/auth", adminAuthRoutes);
 app.use("/api/salesman", salesmanRoutes);
+app.use("/auth", salesmanLoginRoutes)
 
 app.get("/", (req: Request, res: Response) => {
     res.json({
