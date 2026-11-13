@@ -1,7 +1,10 @@
 import { Box, Briefcase, LayoutDashboard, LogOut, ShoppingBasket, Truck, Users } from "lucide-react";
+import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 export default function NavBar() {
+    const [isActive, setIsActive] = useState("Dashboard");
+
     const location = useLocation();
     const hideNavBarPaths = '/';
     const showNavBar = !hideNavBarPaths.includes(location.pathname)
@@ -20,8 +23,14 @@ export default function NavBar() {
                                 <ul className="flex flex-col gap-2">
                                     <li>
                                         <NavLink to="/dashboard">
-                                            <button className="p-2 rounded-lg w-full text-left">
-                                                <div className="flex items-center gap-2 bg-[#D2C9BD] p-2 rounded-lg">
+                                            <button
+                                                className="p-2 rounded-lg w-full text-left"
+                                                onClick={() => setIsActive("Dashboard")}
+                                                style={{
+                                                    backgroundColor: isActive === "Dashboard" ? "#D2C9BD" : ""
+                                                }}
+                                            >
+                                                <div className="flex items-center gap-2 rounded-lg">
                                                     <LayoutDashboard />
                                                     <span>Dashboard</span>
                                                 </div>
@@ -30,8 +39,14 @@ export default function NavBar() {
                                     </li>
                                     <li>
                                         <NavLink to="/customers">
-                                            <button className="p-2 rounded-lg w-full text-left">
-                                                <div className="flex items-center gap-2 p-2 rounded-lg">
+                                            <button
+                                                className="p-2 rounded-lg w-full text-left"
+                                                onClick={() => setIsActive("Customers")}
+                                                style={{
+                                                    backgroundColor: isActive === "Customers" ? "#D2C9BD" : ""
+                                                }}
+                                            >
+                                                <div className="flex items-center gap-2 rounded-lg">
                                                     <Users />
                                                     <span>Customers</span>
                                                 </div>
@@ -40,38 +55,62 @@ export default function NavBar() {
                                     </li>
                                     <li>
                                         <NavLink to="/salesman">
-                                            <button className="p-2 rounded-lg w-full text-left">
-                                                <div className="flex items-center gap-2 p-2 rounded-lg">
+                                            <button
+                                                className="p-2 rounded-lg w-full text-left"
+                                                onClick={() => setIsActive("Salesmen")}
+                                                style={{
+                                                    backgroundColor: isActive === "Salesmen" ? "#D2C9BD" : ""
+                                                }}
+                                            >
+                                                <div className="flex items-center gap-2 rounded-lg">
                                                     <Briefcase />
-                                                    <span>Salesman</span>
+                                                    <span>Salesmen</span>
                                                 </div>
                                             </button>
                                         </NavLink>
                                     </li>
                                     <li>
                                         <NavLink to="/products">
-                                            <button className="p-2 rounded-lg w-full text-left">
-                                                <div className="flex items-center gap-2 p-2 rounded-lg">
+                                            <button
+                                                className="p-2 rounded-lg w-full text-left"
+                                                onClick={() => setIsActive("Products")}
+                                                style={{
+                                                    backgroundColor: isActive === "Products" ? "#D2C9BD" : ""
+                                                }}
+                                            >
+                                                <div className="flex items-center gap-2 rounded-lg">
                                                     <Box />
-                                                    <span>Product</span>
+                                                    <span>Products</span>
                                                 </div>
                                             </button>
                                         </NavLink>
                                     </li>
                                     <li>
                                         <NavLink to="/distributors">
-                                            <button className="p-2 rounded-lg w-full text-left">
-                                                <div className="flex items-center gap-2 p-2 rounded-lg">
+                                            <button
+                                                className="p-2 rounded-lg w-full text-left"
+                                                onClick={() => setIsActive("Distributors")}
+                                                style={{
+                                                    backgroundColor: isActive === "Distributors" ? "#D2C9BD" : ""
+                                                }}
+                                            >
+                                                <div className="flex items-center gap-2 rounded-lg">
                                                     <Truck />
-                                                    <span>Distributor</span>
+                                                    <span>Distributors</span>
                                                 </div>
                                             </button>
                                         </NavLink>
                                     </li>
                                     <li>
                                         <NavLink to="orders">
-                                            <button className="p-2 rounded-lg w-full text-left">
-                                                <div className="flex items-center gap-2 p-2 rounded-lg">
+                                            <button
+                                                className="p-2 rounded-lg w-full text-left"
+                                                onClick={() => setIsActive("Orders")}
+                                                style={{
+                                                    backgroundColor: isActive === "Orders" ? "#D2C9BD" : ""
+                                                }}
+                                            >
+                                                <div className="flex items-center gap-2 rounded-lg">
                                                     <ShoppingBasket />
                                                     <span>Orders</span>
                                                 </div>
