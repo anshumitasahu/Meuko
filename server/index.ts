@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import adminAuthRoutes from "./Routes/authRoutes/adminLoginRoutes";
 import salesmanRoutes from "./Routes/SalesmanRoutes";
 import salesmanLoginRoutes from './Routes/authRoutes/salesmanLoginRoutes';
+import productsRoutes from "./Routes/ProductsRoutes"
 
 const app: Express = express();
 const PORT = 3000;
@@ -23,6 +24,7 @@ app.use(cookieParser())
 app.use("/auth", adminAuthRoutes);
 app.use("/api/salesman", salesmanRoutes);
 app.use("/auth", salesmanLoginRoutes);
+app.use("/api/products", productsRoutes);
 
 app.get("/", (req: Request, res: Response) => {
     res.json({
