@@ -7,6 +7,7 @@ import Products from "./components/page/Product";
 import Salesman from "./components/page/Salesman";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/authPages/login";
+import Auth from "./components/authPages/Auth";
 
 function App() {
   return (
@@ -15,9 +16,9 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/customers" element={<Customer />} />
-          <Route path="/salesman" element={<Salesman />} />
+          <Route path="/dashboard" element={<Auth><Dashboard /></Auth>} />
+          <Route path="/customers" element={<Auth><Customer /></Auth>} />
+          <Route path="/salesman" element={<Auth><Salesman /></Auth>} />
           <Route path="/products" element={<Products />} />
           <Route path="/distributors" element={<Distributors />} />
           <Route path="/orders" element={<Orders />} />

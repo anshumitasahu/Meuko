@@ -22,7 +22,7 @@ app.use(cookieParser())
 
 app.use("/auth", adminAuthRoutes);
 app.use("/api/salesman", salesmanRoutes);
-app.use("/auth", salesmanLoginRoutes)
+app.use("/auth", salesmanLoginRoutes);
 
 app.get("/", (req: Request, res: Response) => {
     res.json({
