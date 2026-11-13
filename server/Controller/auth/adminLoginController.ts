@@ -1,5 +1,6 @@
 import type { Request, Response } from "express";
 import { generateToken } from "../../utils/jwt";
+import { LoginSchema } from "../../models/auth/auth.models";
 
 if (!process.env.ADMIN_EMAIL || !process.env.ADMIN_PASSWORD) {
     throw new Error("Admin credentials not found")
@@ -13,18 +14,18 @@ if (!node_env) {
 
 export const adminLogin = async (req: Request, res: Response) => {
     try {
-        const { email, password } = req.body;
-
-        const admin_email = process.env.ADMIN_EMAIL;
-        const admmin_password = process.env.ADMIN_PASSWORD
-
-        if (!email || !password) {
+        const input = LoginSchema.safeParse(req.body);
+        if (input.error) {
             return res.status(400).json({
                 success: false,
-                message: "Enter email and password to login",
-                data: null
+                message: "Validation Error",
+                data: input.error
             })
         }
+        const {email, password} = input.data;
+
+        const admin_email = process.env.ADMIN_EMAIL;
+        const admmin_password = process.env.ADMIN_PASSWORD;
 
         if (email !== admin_email || password !== admmin_password) {
             return res.status(401).json({

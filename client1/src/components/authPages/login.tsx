@@ -1,12 +1,28 @@
 import { useEffect, useState } from "react"
-import { useLoginAdmin } from "../../lib/loginApi";
 import { useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { API_ROUTES } from "../../lib/api";
+import type { LoginParams } from "../../models/auth/auth.models";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const loginAdmin = useLoginAdmin({ setEmail, setPassword })
+    const loginAdmin = useMutation({
+        mutationFn: async (data: LoginParams) => {
+            const res = await axios.post<Response>(API_ROUTES.USEADMINLOGIN.POST, data, {
+                withCredentials: true
+            });
+
+            return res.data
+        },
+        onSuccess: () => {
+            alert("Login Successfull");
+            setEmail("");
+            setPassword("");
+        }
+    })
 
     const handleLoginAdmin = () => {
         loginAdmin.mutate({
