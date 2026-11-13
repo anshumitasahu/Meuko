@@ -10,13 +10,13 @@ export default function NavBar() {
         <div>
             {
                 showNavBar && (
-                    <div className="flex flex-col justify-between gap-3 bg-[#E6DED2] h-full w-65 text-[#211400]">
-                        <div className=" p-8">
+                    <div className="flex flex-col justify-between gap-3 bg-[#E6DED2] h-full w-55 text-[#211400]">
+                        <div className="p-5">
                             <div className="flex items-center">
                                 <img src="./logo-1.png" alt="" className="w-15" />
                                 <div className="font-bold text-xl">Meuko</div>
                             </div>
-                            <div className="w-full pt-8">
+                            <div className="w-full pt-4">
                                 <ul className="flex flex-col gap-2">
                                     <li>
                                         <NavLink to="/dashboard">
@@ -81,19 +81,21 @@ export default function NavBar() {
                                 </ul>
                             </div>
                         </div>
-                        <div className="flex gap-2 p-3 mb-3 items-center justify-between w-full hover:cursor-pointer">
+                        <div className="flex gap-2 p-3 mb-3 items-center justify-between w-full hover:cursor-pointer border-t border-[#d6c2a1]">
                             <div className="flex gap-2 items-center">
-                                <img src="/admin.jpeg" alt="" className="w-11 rounded-2xl border-2 border-white" />
+                                <img src="/admin.jpeg" alt="" className="w-11 rounded-2xl border-2 border-white shadow-sm" />
                                 <div className="flex flex-col">
                                     <span className="text-sm">Hana Yoshida</span>
                                     <span className="text-xs">admin@gmail.com</span>
                                 </div>
                             </div>
-                            <LogOut size={18} />
+                            <div className="bg-[#eeebe7] p-1 rounded-sm">
+                                <LogOut size={16} />
+                            </div>
                         </div>
                     </div>
                 )
             }
-        </div>
+        </div >
     )
 }
