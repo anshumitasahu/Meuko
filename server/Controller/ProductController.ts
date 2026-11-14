@@ -35,3 +35,21 @@ export const createProducts = async (req: Request, res: Response) => {
         })
     }
 }
+
+export const getProducts = async (req: Request, res: Response) => {
+    try {
+        const products = await prisma.products.findMany()
+
+        return res.status(200).json({
+            success: true,
+            message: "Product fetched successfully",
+            data: products
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Internal Error Occuerred",
+            error: error
+        })
+    }
+}
