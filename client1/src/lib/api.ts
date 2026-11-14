@@ -6,5 +6,9 @@ export const API_ROUTES = {
     },
     ME: {
         GET: `${API_BASE}/auth/me`
+    },
+    PRODUCT: {
+        GET: `${API_BASE}/api/products/getProducts`,
+        POST: `${API_BASE}/api/products/createProducts`
     }
 };
