@@ -4,11 +4,13 @@ export interface Response {
 }
 
 export interface AdminLogin {
-    email: string,
-    password: string;
+    email: string
+    password: string
 }
 
-export interface UseAdminLogin {
-    setEmail: React.Dispatch<React.SetStateAction<string>>;
-    setPassword: React.Dispatch<React.SetStateAction<string>>;
+export interface CreateProductsProps {
+    name: string
+    price: string
+    createdAt: Date
+    isActive: Boolean
 }
