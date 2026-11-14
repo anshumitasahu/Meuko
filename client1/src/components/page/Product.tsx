@@ -2,8 +2,9 @@ import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 import type { ProductQueryResponse } from "../../types/types"
 import { API_ROUTES } from "../../lib/api"
-import { flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table"
+import { flexRender, getCoreRowModel, getFilteredRowModel, useReactTable } from "@tanstack/react-table"
 import { columns } from "../../lib/tables/ProductTable"
+import { useState } from "react"
 
 
 export const useGetProductsQuery = () => {
@@ -17,6 +18,7 @@ export const useGetProductsQuery = () => {
 }
 
 export default function Products() {
+    const [globalFilter, setGlobalFilter] = useState("");
 
     const { data, isLoading, isError } = useGetProductsQuery()
 
@@ -25,11 +27,24 @@ export default function Products() {
     const table = useReactTable({
         data: products,
         columns,
+        state: {
+            globalFilter
+        },
+        onGlobalFilterChange: setGlobalFilter,
         getCoreRowModel: getCoreRowModel(),
+        getFilteredRowModel: getFilteredRowModel(),
     })
 
     return (
         <div className="p-10 w-full">
+            <div>
+                <input
+                    type="text"
+                    value={globalFilter}
+                    onChange={e => setGlobalFilter(e.target.value)}
+                    placeholder="Search Products"
+                />
+            </div>
             {!isLoading && !isError && (
                 <>
                     <div>
