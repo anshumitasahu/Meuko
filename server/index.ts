@@ -12,10 +12,10 @@ const app: Express = express();
 const PORT = 3000;
 
 app.use(cors(
-    // {
-    //     origin: ["http://localhost:5173", "http://localhost:5174", "https://hoppscotch.io/"],
-    //     credentials: true
-    // }
+    {
+        origin: ["http://localhost:5173", "http://localhost:5174", "https://hoppscotch.io/"],
+        credentials: true
+    }
 ));
 
 app.use(express.json());

@@ -3,7 +3,8 @@
 export default function Products() {
     return (
         <div>
-            hello
+            <table>
+            </table>
         </div>
     )
 }
