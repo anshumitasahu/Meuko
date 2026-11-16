@@ -45,3 +45,14 @@ model Products {
   createdBy String   @default("system")
   updatedBy String   @default("system")
 }
+
+model Customer {
+  id      Int    @id @default(autoincrement())
+  name    String
+  phone   String
+  Address String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  isActive  Boolean  @default(true)
+}
