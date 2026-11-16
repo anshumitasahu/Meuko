@@ -6,6 +6,8 @@ import { flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel
 import { columns } from "../../lib/tables/ProductTable"
 import { useState } from "react"
 import { Plus } from "lucide-react"
+import Skeleton from "../ui/utils/Skeletion"
+import CrateProductsModal from "../ui/Product/CreateProdutsModal"
 
 
 export const useGetProductsQuery = () => {
@@ -21,6 +23,7 @@ export const useGetProductsQuery = () => {
 export default function Products() {
     const [globalFilter, setGlobalFilter] = useState("");
     const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
+    const [isOpen, setIsOpen] = useState(false)
 
     const { data, isLoading, isError } = useGetProductsQuery()
 
@@ -42,6 +45,7 @@ export default function Products() {
 
     return (
         <div className="p-8 w-full">
+            <h1 className="text-md pb-4 font-bold text-[#352206]">Products</h1>
             <div className="pb-4 flex justify-between">
                 <input
                     type="text"
@@ -52,10 +56,16 @@ export default function Products() {
                 />
                 <button
                     className="flex gap-2 text-white bg-[#352206] px-2 py-1 rounded-lg items-center"
+                    onClick={() => setIsOpen(!isOpen)}
                 >
                     <Plus />Add Products
                 </button>
             </div>
+
+            {isLoading && <Skeleton width="100%" height="500px" />}
+
+            {isError && <p>Failed to fetch products</p>}
+
             {!isLoading && !isError && (
                 <>
                     <div>
@@ -168,6 +178,14 @@ export default function Products() {
                         </div>
                     </div>
                 </>
+            )}
+
+            {isOpen && (
+                <div>
+                    <CrateProductsModal
+                        onClose={() => setIsOpen(false)}
+                    />
+                </div>
             )}
         </div>
     )
