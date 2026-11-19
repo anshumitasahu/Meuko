@@ -1,4 +1,9 @@
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import { useState } from "react"
+import { API_ROUTES } from "../../../lib/api";
+import { useGetProductsQuery } from "../../page/Product";
+import type { CreateProductsProps } from "../../../types/types";
 
 
 type CreateProductsModalProps = {
@@ -8,9 +13,38 @@ type CreateProductsModalProps = {
 
 export default function CrateProductsModal({ onClose }: CreateProductsModalProps) {
     const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState("");
-    const [address, setAddress] = useState("")
+    const [price, setPrice] = useState("");
+
+    const createProducts = useMutation({
+        mutationFn: async (data: CreateProductsProps) => {
+            const res = await axios.post<Response>(API_ROUTES.PRODUCT.POST, data);
+            return res.data;
+        },
+        onSuccess: () => {
+            alert("product created successfully");
+
+            setName("");
+            setPrice("");
+
+            useGetProductsQuery();
+
+            onClose();
+        }
+    });
+
+    const handleCreateProducts = () => {
+        if (!name.trim() || !price) {
+            return alert("Please enter valid product name and price")
+        }
+
+        createProducts.mutate({
+            name,
+            price: Number(price),
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            isActive: true
+        })
+    }
 
     return (
         <div>
@@ -24,32 +58,22 @@ export default function CrateProductsModal({ onClose }: CreateProductsModalProps
                 <input
                     type="text"
                     value={name}
+                    onChange={(e) => setName(e.target.value)}
                 />
             </div>
             <div>
-                <p>Product's email</p>
+                <p>Product's price</p>
                 <input
                     type="text"
-                    value={email}
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
                 />
             </div>
             <div>
-                <p>Product's Phone</p>
-                <input
-                    type="text"
-                    value={phone}
-                />
-            </div>
-            <div>
-                <p>Product's Address</p>
-                <input
-                    type="text"
-                    value={address}
-                />
-            </div>
-            <div>
-                <button>
-                    ADD PRODUCTS
+                <button
+                    onClick={handleCreateProducts}
+                >
+                    Add Products
                 </button>
             </div>
         </div>

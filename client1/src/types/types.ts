@@ -18,7 +18,7 @@ export interface AdminLogin {
 
 export interface CreateProductsProps {
     name: string
-    price: string
+    price: number
     createdAt: Date
     updatedAt: Date
     isActive: Boolean
@@ -26,7 +26,7 @@ export interface CreateProductsProps {
 
 export interface Product extends BaseEntity {
     name: string
-    price: string
+    price: number
 }
 
 export interface ProductQueryResponse extends Response {
