@@ -1,9 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react"
-import { API_ROUTES } from "../../../lib/api";
-import { useGetProductsQuery } from "../../page/Product";
-import type { CreateProductsProps } from "../../../types/types";
+import { API_ROUTES } from "../../../../lib/api";
+import { useGetProductsQuery } from "../../../page/Product";
+import type { CreateProductsProps } from "../../../../types/types";
 import { X } from "lucide-react";
 
 
@@ -49,7 +49,7 @@ export default function CrateProductsModal({ onClose }: CreateProductsModalProps
 
     return (
         <div className="bg-[#f2efeb] p-6 rounded-lg">
-            <div className=" flex justify-between items-center w-full text-sm">
+            <div className=" flex justify-between items-center w-full text-sm pb-2">
                 <div className="text-[#30210C]">
                     Create Products
                 </div>
@@ -60,7 +60,7 @@ export default function CrateProductsModal({ onClose }: CreateProductsModalProps
                     <X size={20} />
                 </button>
             </div>
-            <div className="flex flex-col gap-4 border-t border-t-[#F2EFEA] pt-4 w-full text-[#30210C]">
+            <div className="flex flex-col gap-4 border-t border-t-[#d6cab5] pt-4 w-full text-[#30210C]">
                 <div className="flex flex-col gap-1">
                     <p className="text-xs text-[#807563]">
                         Product's Name

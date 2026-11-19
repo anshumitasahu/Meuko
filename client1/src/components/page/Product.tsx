@@ -7,7 +7,7 @@ import { columns } from "../../lib/tables/ProductTable"
 import { useState } from "react"
 import { Plus } from "lucide-react"
 import Skeleton from "../ui/utils/Skeletion"
-import CrateProductsModal from "../ui/Product/CreateProdutsModal"
+import CrateProductsModal from "../ui/Modals/Products/CreateProdutsModal"
 
 
 export const useGetProductsQuery = () => {
