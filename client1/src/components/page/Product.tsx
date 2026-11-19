@@ -55,7 +55,7 @@ export default function Products() {
                     className="p-2 px-3 text-sm border border-[#e4daca] rounded-lg outline-0 focus:ring ring-[#d6c8b3] bg-white/70"
                 />
                 <button
-                    className="flex gap-2 text-white bg-[#352206] px-2 py-1 rounded-lg items-center"
+                    className="flex gap-2 text-white bg-[#352206] px-2 py-1 rounded-lg items-center justify-center text-sm"
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     <Plus />Add Products
@@ -181,7 +181,7 @@ export default function Products() {
             )}
 
             {isOpen && (
-                <div>
+                <div className="flex bg-black/20 backdrop-blur-xs absolute z-50 inset-0 justify-center items-center">
                     <CrateProductsModal
                         onClose={() => setIsOpen(false)}
                     />
