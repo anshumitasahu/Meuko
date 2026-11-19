@@ -8,7 +8,15 @@ export const columns: ColumnDef<CreateProductsProps>[] = [
     },
     {
         accessorKey: "name",
-        header: "Name"
+        header: "Name",
+        cell: ({ getValue }) => {
+            const value = String(getValue() ?? '');
+            const maxLength = 50;
+
+            return value.length > maxLength
+                ? `${value.slice(0, maxLength)}...`
+                : value;
+        },
     },
     {
         accessorKey: "price",
