@@ -1,10 +1,9 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { X } from "lucide-react";
 import { useState } from "react";
 import type { CreateCustomersProps } from "../../../../types/types";
 import axios from "axios";
 import { API_ROUTES } from "../../../../lib/api";
-import { useGetCustomersQuery } from "../../../page/Customer";
 
 type CreateCustomersModalProps = {
     onClose: () => void;
@@ -16,9 +15,13 @@ export default function CreateCustomersModal({ onClose }: CreateCustomersModalPr
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
 
+    const queryClient = useQueryClient();
+
     const createCustomers = useMutation({
         mutationFn: async (data: CreateCustomersProps) => {
-            const res = await axios.post<Response>(API_ROUTES.CUSTOMER.POST, data);
+            const res = await axios.post<Response>(API_ROUTES.CUSTOMER.POST, data, {
+                withCredentials: true
+            });
             return res.data;
         },
         onSuccess: () => {
@@ -29,7 +32,9 @@ export default function CreateCustomersModal({ onClose }: CreateCustomersModalPr
             setPhone("");
             setAddress("");
 
-            useGetCustomersQuery();
+            queryClient.invalidateQueries({
+                queryKey: ["get-customers"]
+            });
 
             onClose();
         }

@@ -41,7 +41,7 @@ export const adminLogin = async (req: Request, res: Response) => {
             httpOnly: true,
             secure: node_env === "production",
             sameSite: "lax",
-            maxAge: 60 * 60 * 1000
+            maxAge: 7 * 24 * 60 * 60 * 1000
         })
 
         return res.status(200).json({

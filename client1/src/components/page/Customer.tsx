@@ -7,7 +7,7 @@ import { flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel
 import { columns } from "../../lib/tables/CustomerTable";
 import Skeleton from "../ui/utils/Skeletion";
 import { Plus } from "lucide-react";
-import CreateCustomersModal from "../ui/Modals/Customers/CreatteCustomersModal";
+import CreateCustomersModal from "../ui/Modals/Customers/CreateCustomersModal";
 
 
 export const useGetCustomersQuery = () => {
