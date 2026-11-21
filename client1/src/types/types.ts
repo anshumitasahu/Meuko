@@ -71,3 +71,24 @@ export interface Salesmen extends BaseEntity {
 export interface SalesmenQueryRespone extends Response {
     data: Salesmen[]
 }
+
+export interface CreateDistributorProps {
+    name: string
+    email: string
+    phone: string
+    address: string
+    createdAt: Date
+    updatedAt: Date
+    isActive: Boolean
+}
+
+export interface Distributor extends BaseEntity {
+    name: string
+    phone: string
+    email: string
+    address: string
+}
+
+export interface DistributorQueryResponse extends Response {
+    data: Distributor[]
+}
