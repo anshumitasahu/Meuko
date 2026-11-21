@@ -17,6 +17,6 @@ export const API_ROUTES = {
     },
     SALESMAN: {
         GET: `${API_BASE}/api/salesman/get`,
-        POST: `${API_BASE}/api/salesman/post`
+        POST: `${API_BASE}/api/salesman/create`
     }
 };

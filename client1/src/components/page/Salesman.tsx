@@ -11,7 +11,7 @@ import CreateSalesmanModal from "../ui/Modals/Salesmen/CreateSalesmenModal";
 
 export const useGetSalesmenQuery = () => {
     return useQuery({
-        queryKey: ["get-Salesmen"],
+        queryKey: ["get-salesmen"],
         queryFn: async () => {
             const res = await axios.get<SalesmenQueryRespone>(API_ROUTES.SALESMAN.GET);
             return res.data

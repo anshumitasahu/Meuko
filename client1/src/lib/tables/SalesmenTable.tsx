@@ -1,7 +1,7 @@
 import type { ColumnDef } from "@tanstack/react-table";
-import type { CreateSalesmanProps } from "../../types/types";
+import type { Salesmen } from "../../types/types";
 
-export const columns: ColumnDef<CreateSalesmanProps>[] = [
+export const columns: ColumnDef<Salesmen>[] = [
     {
         accessorKey: "id",
         header: "ID"

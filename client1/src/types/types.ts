@@ -57,6 +57,7 @@ export interface CustomersQueryResponse extends Response {
 export interface CreateSalesmanProps {
     name: string
     email: string
+    password: string
     createdAt: Date
     updatedAt: Date
     isActive: Boolean
