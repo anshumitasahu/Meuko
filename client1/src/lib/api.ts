@@ -18,5 +18,9 @@ export const API_ROUTES = {
     SALESMAN: {
         GET: `${API_BASE}/api/salesman/get`,
         POST: `${API_BASE}/api/salesman/create`
+    },
+    DISTRIBUTORS: {
+        GET: `${API_BASE}/api/distributors/get`,
+        POST: `${API_BASE}/api/distributors/create`
     }
 };
