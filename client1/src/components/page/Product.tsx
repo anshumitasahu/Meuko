@@ -6,7 +6,7 @@ import { flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel
 import { columns } from "../../lib/tables/ProductTable"
 import { useState } from "react"
 import { Plus } from "lucide-react"
-import Skeleton from "../ui/utils/Skeletion"
+import Skeleton from "../ui/utils/Skeleton"
 import CrateProductsModal from "../ui/Modals/Products/CreateProdutsModal"
 
 

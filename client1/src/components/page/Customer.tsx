@@ -5,7 +5,7 @@ import { API_ROUTES } from "../../lib/api";
 import { useState } from "react";
 import { flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, useReactTable } from "@tanstack/react-table";
 import { columns } from "../../lib/tables/CustomerTable";
-import Skeleton from "../ui/utils/Skeletion";
+import Skeleton from "../ui/utils/Skeleton";
 import { Plus } from "lucide-react";
 import CreateCustomersModal from "../ui/Modals/Customers/CreateCustomersModal";
 

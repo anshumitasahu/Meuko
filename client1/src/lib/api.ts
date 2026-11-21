@@ -14,5 +14,9 @@ export const API_ROUTES = {
     CUSTOMER: {
         GET: `${API_BASE}/api/customers/get`,
         POST: `${API_BASE}/api/customers/create`
+    },
+    SALESMAN: {
+        GET: `${API_BASE}/api/salesman/get`,
+        POST: `${API_BASE}/api/salesman/post`
     }
 };
