@@ -8,6 +8,7 @@ import salesmanRoutes from "./Routes/SalesmanRoutes";
 import salesmanLoginRoutes from './Routes/authRoutes/salesmanLoginRoutes';
 import productsRoutes from "./Routes/ProductsRoutes";
 import customersRoutes from "./Routes/CustomersRoutes";
+import distributorsRoutes from "./Routes/DistributorsRoutes"
 
 const app: Express = express();
 const PORT = 3000;
@@ -27,6 +28,7 @@ app.use("/auth", salesmanLoginRoutes);
 app.use("/api/salesman", salesmanRoutes);
 app.use("/api/products", productsRoutes);
 app.use("/api/customers", customersRoutes);
+app.use("/api/distributors", distributorsRoutes)
 
 app.get("/", (req: Request, res: Response) => {
     res.json({

@@ -6,7 +6,11 @@ export const createCustomer = async (req: Request, res: Response) => {
         const { name, phone, email, address } = req.body;
 
         if (!name || !phone || !email || !address) {
-
+            return res.status(400).json({
+                success: false,
+                message: "Enter valid input",
+                data: null
+            })
         }
 
         const customer = await prisma.customer.create({
