@@ -1,9 +1,20 @@
 import type { Request, Response } from "express"
 import { prisma } from "../lib/prismaClient";
+import { DistributorScehma } from "../models/distributor/distributor.model";
 
 export const CreateDistributors = async (req: Request, res: Response) => {
     try {
-        const { name, email, phone, address } = req.body;
+        const input = DistributorScehma.safeParse(req.body);
+
+        if (input.error) {
+            return res.status(400).json({
+                success: false,
+                message: "Validation Error",
+                data: input.error
+            })
+        }
+
+        const { name, email, phone, address } = input.data;
 
         if (!name || !phone || !email || !address) {
             return res.status(400).json({
