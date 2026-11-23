@@ -5,8 +5,6 @@ import axios from "axios";
 import { API_ROUTES } from "../../../../lib/api";
 import { X } from "lucide-react";
 
-
-
 type CreateSalesmanModalProps = {
     onClose: () => void;
 }

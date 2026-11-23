@@ -48,7 +48,11 @@ export const CreateDistributors = async (req: Request, res: Response) => {
 
 export const getDistributor = async (req: Request, res: Response) => {
     try {
-        const distributors = await prisma.distributor.findMany();
+        const distributors = await prisma.distributor.findMany({
+            orderBy: {
+                id: "asc"
+            }
+        });
 
         return res.status(200).json({
             success: true,
