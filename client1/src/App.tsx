@@ -2,7 +2,7 @@ import NavBar from "./components/ui/layout/navbar";
 import Customer from "./components/page/Customer";
 import Dashboard from "./components/page/Dashboard";
 import Distributors from "./components/page/Distributors";
-import Orders from "./components/page/Orders";
+import Orders from "./components/page/Orders/Orders";
 import Products from "./components/page/Product";
 import Salesman from "./components/page/Salesman";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
