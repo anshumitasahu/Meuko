@@ -39,6 +39,8 @@ model Products {
   name  String
   price Int
 
+  orderItems OrderItems[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   isActive  Boolean  @default(true)
@@ -53,6 +55,8 @@ model Customer {
   address String
   email   String @unique
 
+  secondaryOrders SecondaryOrder[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   isActive  Boolean  @default(true)
@@ -66,6 +70,42 @@ model Distributor {
   phone   String
   address String
   email   String @unique
+
+  primaryOrders PrimaryOrder[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  isActive  Boolean  @default(true)
+  createdBy String   @default("system")
+  updatedBy String   @default("system")
+}
+
+model PrimaryOrder {
+  id            Int @id @default(autoincrement())
+  distributorId Int
+
+  distributor Distributor  @relation(fields: [distributorId], references: [id])
+  orderItems  OrderItems[]
+}
+
+model SecondaryOrder {
+  id         Int @id @default(autoincrement())
+  customerId Int
+
+  customer   Customer     @relation(fields: [customerId], references: [id])
+  orderItems OrderItems[]
+}
+
+model OrderItems {
+  id               Int  @id @default(autoincrement())
+  primaryOrderId   Int?
+  secondaryOrderId Int?
+  productId        Int
+  quantity         Int  @default(1)
+
+  primaryOrder   PrimaryOrder?   @relation(fields: [primaryOrderId], references: [id])
+  secondaryOrder SecondaryOrder? @relation(fields: [secondaryOrderId], references: [id])
+  product        Products        @relation(fields: [productId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
