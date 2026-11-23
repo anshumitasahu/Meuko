@@ -92,3 +92,30 @@ export interface Distributor extends BaseEntity {
 export interface DistributorQueryResponse extends Response {
     data: Distributor[]
 }
+
+export interface CreatePrimaryOrderProps {
+    distributorId: number
+    items: {
+        productId: number
+        quantity: number
+    }[];
+}
+
+export interface OrderItemResponse {
+    id: number
+    quantity: number
+    productId: number
+    primaryOrderId?: number
+    secondaryOrderId?: number
+    product: Product
+}
+
+export interface PrimaryOrder extends BaseEntity {
+    distributorId: number
+    distributor: Distributor
+    orderItems: OrderItemResponse[]
+}
+
+export interface PrimaryOrderQueryResponse extends Response {
+    data: PrimaryOrder[]
+}
