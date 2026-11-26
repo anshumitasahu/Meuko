@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { Plus } from "lucide-react";
 import type { PrimaryOrderQueryResponse } from "../../../types/types";
 import { API_ROUTES } from "../../../lib/api";
 import { useState } from "react";
@@ -8,9 +7,10 @@ import { flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel
 import { columns } from "../../../lib/tables/PrimaryOrderTable"
 import Skeleton from "../../ui/utils/Skeleton";
 
+
 export const useGetPrimaryOrdersQuery = () => {
     return useQuery({
-        queryKey: ["get-customers"],
+        queryKey: ["get-primaryOrders"],
         queryFn: async () => {
             const res = await axios.get<PrimaryOrderQueryResponse>(API_ROUTES.PRIMARYORDERS.GET);
             return res.data
@@ -21,7 +21,6 @@ export const useGetPrimaryOrdersQuery = () => {
 export default function PrimaryOrder() {
     const [globalFilter, setGlobalFilter] = useState("");
     const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
-    const [isOpen, setIsOpen] = useState(false);
     const { data, isLoading, isError } = useGetPrimaryOrdersQuery();
 
     const primaryOrders = data?.data ?? [];
@@ -50,12 +49,6 @@ export default function PrimaryOrder() {
                     placeholder="Search Orders"
                     className="p-2 px-3 text-sm border border-[#e4daca] rounded-lg outline-0 focus:ring ring-[#d6c8b3] bg-white/70"
                 />
-                <button
-                    className="flex gap-2 text-white bg-[#352206] px-2 py-1 rounded-lg items-center justify-center text-sm"
-                    onClick={() => setIsOpen(!isOpen)}
-                >
-                    <Plus />Add Orders
-                </button>
             </div>
 
             {isLoading && <Skeleton width="100%" height="500px" />}
@@ -175,14 +168,6 @@ export default function PrimaryOrder() {
                     </div>
                 </>
             )}
-
-            {/* {isOpen && (
-                        <div className="flex bg-black/20 backdrop-blur-xs absolute z-50 inset-0 justify-center items-center">
-                            <CreateCustomersModal
-                                onClose={() => setIsOpen(false)}
-                            />
-                        </div>
-                    )} */}
         </div>
     )
 }

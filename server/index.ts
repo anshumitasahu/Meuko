@@ -10,6 +10,7 @@ import productsRoutes from "./Routes/ProductsRoutes";
 import customersRoutes from "./Routes/CustomersRoutes";
 import distributorsRoutes from "./Routes/DistributorsRoutes";
 import primaryOrderRoutes from "./Routes/order/PrimaryOrderRoutes"
+import secondaryOrderRoutes from "./Routes/order/SecondaryOrder"
 
 const app: Express = express();
 const PORT = 3000;
@@ -31,6 +32,7 @@ app.use("/api/products", productsRoutes);
 app.use("/api/customers", customersRoutes);
 app.use("/api/distributors", distributorsRoutes);
 app.use("/api/primaryOrder", primaryOrderRoutes);
+app.use("/api/secondaryOrder", secondaryOrderRoutes);
 
 app.get("/", (req: Request, res: Response) => {
     res.json({

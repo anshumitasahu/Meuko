@@ -4,6 +4,7 @@ export interface Response {
 }
 
 export interface BaseEntity {
+    id: number
     createdAt: Date
     updatedAt: Date
     isActive: Boolean
@@ -101,6 +102,14 @@ export interface CreatePrimaryOrderProps {
     }[];
 }
 
+export interface CreateSecondaryOrderProps {
+    customerId: number
+    items: {
+        productId: number
+        quantity: number
+    }[];
+}
+
 export interface OrderItemResponse {
     id: number
     quantity: number
@@ -118,4 +127,14 @@ export interface PrimaryOrder extends BaseEntity {
 
 export interface PrimaryOrderQueryResponse extends Response {
     data: PrimaryOrder[]
+}
+
+export interface SecondaryOrder extends BaseEntity {
+    customerId: number
+    customer: Customers
+    orderItems: OrderItemResponse[]
+}
+
+export interface SecondaryOrderQueryResponse extends Response {
+    data: SecondaryOrder[]
 }

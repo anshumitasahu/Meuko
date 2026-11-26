@@ -24,7 +24,9 @@ export const API_ROUTES = {
         POST: `${API_BASE}/api/distributors/create`
     },
     PRIMARYORDERS: {
-        GET: `${API_BASE}/api/primaryOrder/get`,
-        CREATE: `${API_BASE}/api/primaryOrder/create/:id`
+        GET: `${API_BASE}/api/primaryOrder/get`
+    },
+    SECONDARYORDERS: {
+        GET: `${API_BASE}/api/secondaryOrder/get`
     }
 };
