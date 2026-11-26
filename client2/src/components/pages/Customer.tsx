@@ -1,10 +1,653 @@
+import { useQuery } from "@tanstack/react-query"
+import axios from "axios"
+import type { CustomersQueryResponse } from "../../types/types";
+import { API_ROUTES } from "../../lib/api";
+import { ChevronRight, User } from "lucide-react";
 
+
+export const useGetCustomersQuery = () => {
+    return useQuery({
+        queryKey: ["get-customers"],
+        queryFn: async () => {
+            const res = await axios.get<CustomersQueryResponse>(API_ROUTES.CUSTOMER.GET);
+            return res.data
+        }
+    })
+}
 
 export default function Customer() {
+    const { data, isLoading, isError } = useGetCustomersQuery();
+
+    const customers = data?.data ?? [];
+
     return (
-        <div>
-            View customer
-            {/* Customer table */}
+        <div className="p-3 w-full">
+            <h1 className="text-md pb-4 font-bold text-[#352206]">Customers</h1>
+            <div className="pb-4 flex justify-between">
+                <input
+                    type="text"
+                    placeholder="Search customers"
+                    className="p-2 px-3 text-sm border border-[#e4daca] rounded-lg outline-0 focus:ring ring-[#d6c8b3] bg-white/70 w-full"
+                />
+            </div>
+
+            {isLoading && <p>Loading..</p>}
+
+            {isError && <p>Failed to fetch customers</p>}
+
+            {!isLoading && !isError && (
+                <>
+                    <div>
+                        {customers.map((customer) => (
+                            <div
+                                key={customer.id}
+                                className="pb-3"
+                            >
+                                <div className="flex justify-between items-center border border-[#e0d5c7] p-2 rounded-2xl">
+                                    <div className="flex items-center gap-4 ">
+                                        <div
+                                            className="rounded-full bg-[#eedec9] p-2 text-[#665033]"
+                                        >
+                                            <User />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold">
+                                                {customer.name}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.email}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.phone}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button>
+                                            <ChevronRight />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                        {customers.map((customer) => (
+                            <div
+                                key={customer.id}
+                                className="pb-3"
+                            >
+                                <div className="flex justify-between items-center border border-[#e0d5c7] p-2 rounded-2xl">
+                                    <div className="flex items-center gap-4 ">
+                                        <div
+                                            className="rounded-full bg-[#eedec9] p-2 text-[#665033]"
+                                        >
+                                            <User />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold">
+                                                {customer.name}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.email}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.phone}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button>
+                                            <ChevronRight />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                        {customers.map((customer) => (
+                            <div
+                                key={customer.id}
+                                className="pb-3"
+                            >
+                                <div className="flex justify-between items-center border border-[#e0d5c7] p-2 rounded-2xl">
+                                    <div className="flex items-center gap-4 ">
+                                        <div
+                                            className="rounded-full bg-[#eedec9] p-2 text-[#665033]"
+                                        >
+                                            <User />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold">
+                                                {customer.name}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.email}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.phone}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button>
+                                            <ChevronRight />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                        {customers.map((customer) => (
+                            <div
+                                key={customer.id}
+                                className="pb-3"
+                            >
+                                <div className="flex justify-between items-center border border-[#e0d5c7] p-2 rounded-2xl">
+                                    <div className="flex items-center gap-4 ">
+                                        <div
+                                            className="rounded-full bg-[#eedec9] p-2 text-[#665033]"
+                                        >
+                                            <User />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold">
+                                                {customer.name}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.email}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.phone}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button>
+                                            <ChevronRight />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                        {customers.map((customer) => (
+                            <div
+                                key={customer.id}
+                                className="pb-3"
+                            >
+                                <div className="flex justify-between items-center border border-[#e0d5c7] p-2 rounded-2xl">
+                                    <div className="flex items-center gap-4 ">
+                                        <div
+                                            className="rounded-full bg-[#eedec9] p-2 text-[#665033]"
+                                        >
+                                            <User />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold">
+                                                {customer.name}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.email}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.phone}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button>
+                                            <ChevronRight />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                        {customers.map((customer) => (
+                            <div
+                                key={customer.id}
+                                className="pb-3"
+                            >
+                                <div className="flex justify-between items-center border border-[#e0d5c7] p-2 rounded-2xl">
+                                    <div className="flex items-center gap-4 ">
+                                        <div
+                                            className="rounded-full bg-[#eedec9] p-2 text-[#665033]"
+                                        >
+                                            <User />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold">
+                                                {customer.name}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.email}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.phone}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button>
+                                            <ChevronRight />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                        {customers.map((customer) => (
+                            <div
+                                key={customer.id}
+                                className="pb-3"
+                            >
+                                <div className="flex justify-between items-center border border-[#e0d5c7] p-2 rounded-2xl">
+                                    <div className="flex items-center gap-4 ">
+                                        <div
+                                            className="rounded-full bg-[#eedec9] p-2 text-[#665033]"
+                                        >
+                                            <User />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold">
+                                                {customer.name}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.email}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.phone}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button>
+                                            <ChevronRight />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                        {customers.map((customer) => (
+                            <div
+                                key={customer.id}
+                                className="pb-3"
+                            >
+                                <div className="flex justify-between items-center border border-[#e0d5c7] p-2 rounded-2xl">
+                                    <div className="flex items-center gap-4 ">
+                                        <div
+                                            className="rounded-full bg-[#eedec9] p-2 text-[#665033]"
+                                        >
+                                            <User />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold">
+                                                {customer.name}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.email}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.phone}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button>
+                                            <ChevronRight />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                        {customers.map((customer) => (
+                            <div
+                                key={customer.id}
+                                className="pb-3"
+                            >
+                                <div className="flex justify-between items-center border border-[#e0d5c7] p-2 rounded-2xl">
+                                    <div className="flex items-center gap-4 ">
+                                        <div
+                                            className="rounded-full bg-[#eedec9] p-2 text-[#665033]"
+                                        >
+                                            <User />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold">
+                                                {customer.name}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.email}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.phone}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button>
+                                            <ChevronRight />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                        {customers.map((customer) => (
+                            <div
+                                key={customer.id}
+                                className="pb-3"
+                            >
+                                <div className="flex justify-between items-center border border-[#e0d5c7] p-2 rounded-2xl">
+                                    <div className="flex items-center gap-4 ">
+                                        <div
+                                            className="rounded-full bg-[#eedec9] p-2 text-[#665033]"
+                                        >
+                                            <User />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold">
+                                                {customer.name}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.email}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.phone}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button>
+                                            <ChevronRight />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                        {customers.map((customer) => (
+                            <div
+                                key={customer.id}
+                                className="pb-3"
+                            >
+                                <div className="flex justify-between items-center border border-[#e0d5c7] p-2 rounded-2xl">
+                                    <div className="flex items-center gap-4 ">
+                                        <div
+                                            className="rounded-full bg-[#eedec9] p-2 text-[#665033]"
+                                        >
+                                            <User />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold">
+                                                {customer.name}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.email}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.phone}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button>
+                                            <ChevronRight />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                        {customers.map((customer) => (
+                            <div
+                                key={customer.id}
+                                className="pb-3"
+                            >
+                                <div className="flex justify-between items-center border border-[#e0d5c7] p-2 rounded-2xl">
+                                    <div className="flex items-center gap-4 ">
+                                        <div
+                                            className="rounded-full bg-[#eedec9] p-2 text-[#665033]"
+                                        >
+                                            <User />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold">
+                                                {customer.name}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.email}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.phone}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button>
+                                            <ChevronRight />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                        {customers.map((customer) => (
+                            <div
+                                key={customer.id}
+                                className="pb-3"
+                            >
+                                <div className="flex justify-between items-center border border-[#e0d5c7] p-2 rounded-2xl">
+                                    <div className="flex items-center gap-4 ">
+                                        <div
+                                            className="rounded-full bg-[#eedec9] p-2 text-[#665033]"
+                                        >
+                                            <User />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold">
+                                                {customer.name}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.email}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.phone}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button>
+                                            <ChevronRight />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))} {customers.map((customer) => (
+                            <div
+                                key={customer.id}
+                                className="pb-3"
+                            >
+                                <div className="flex justify-between items-center border border-[#e0d5c7] p-2 rounded-2xl">
+                                    <div className="flex items-center gap-4 ">
+                                        <div
+                                            className="rounded-full bg-[#eedec9] p-2 text-[#665033]"
+                                        >
+                                            <User />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold">
+                                                {customer.name}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.email}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.phone}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button>
+                                            <ChevronRight />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                        {customers.map((customer) => (
+                            <div
+                                key={customer.id}
+                                className="pb-3"
+                            >
+                                <div className="flex justify-between items-center border border-[#e0d5c7] p-2 rounded-2xl">
+                                    <div className="flex items-center gap-4 ">
+                                        <div
+                                            className="rounded-full bg-[#eedec9] p-2 text-[#665033]"
+                                        >
+                                            <User />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold">
+                                                {customer.name}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.email}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.phone}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button>
+                                            <ChevronRight />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                        {customers.map((customer) => (
+                            <div
+                                key={customer.id}
+                                className="pb-3"
+                            >
+                                <div className="flex justify-between items-center border border-[#e0d5c7] p-2 rounded-2xl">
+                                    <div className="flex items-center gap-4 ">
+                                        <div
+                                            className="rounded-full bg-[#eedec9] p-2 text-[#665033]"
+                                        >
+                                            <User />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold">
+                                                {customer.name}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.email}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.phone}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button>
+                                            <ChevronRight />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                        {customers.map((customer) => (
+                            <div
+                                key={customer.id}
+                                className="pb-3"
+                            >
+                                <div className="flex justify-between items-center border border-[#e0d5c7] p-2 rounded-2xl">
+                                    <div className="flex items-center gap-4 ">
+                                        <div
+                                            className="rounded-full bg-[#eedec9] p-2 text-[#665033]"
+                                        >
+                                            <User />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold">
+                                                {customer.name}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.email}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.phone}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button>
+                                            <ChevronRight />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                        {customers.map((customer) => (
+                            <div
+                                key={customer.id}
+                                className="pb-3"
+                            >
+                                <div className="flex justify-between items-center border border-[#e0d5c7] p-2 rounded-2xl">
+                                    <div className="flex items-center gap-4 ">
+                                        <div
+                                            className="rounded-full bg-[#eedec9] p-2 text-[#665033]"
+                                        >
+                                            <User />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold">
+                                                {customer.name}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.email}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.phone}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button>
+                                            <ChevronRight />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                        {customers.map((customer) => (
+                            <div
+                                key={customer.id}
+                                className="pb-3"
+                            >
+                                <div className="flex justify-between items-center border border-[#e0d5c7] p-2 rounded-2xl">
+                                    <div className="flex items-center gap-4 ">
+                                        <div
+                                            className="rounded-full bg-[#eedec9] p-2 text-[#665033]"
+                                        >
+                                            <User />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold">
+                                                {customer.name}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.email}
+                                            </p>
+                                            <p className="text-sm text-neutral-500">
+                                                {customer.phone}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button>
+                                            <ChevronRight />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </>
+            )}
         </div>
     )
 }
