@@ -14,9 +14,9 @@ export default function NavBar() {
     };
 
     return (
-        <div>
+        <div className="sticky top-0">
             {showNavBar &&
-                <div className="flex gap-2 bg-[#eee8df] p-2 justify-between sticky w-full top-0">
+                <div className="flex gap-2 bg-[#eee8df] p-2 justify-between w-full">
                     <div>
                         <NavLink to="/customers">
                             <button
