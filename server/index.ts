@@ -30,7 +30,7 @@ app.use("/api/salesman", salesmanRoutes);
 app.use("/api/products", productsRoutes);
 app.use("/api/customers", customersRoutes);
 app.use("/api/distributors", distributorsRoutes);
-app.use("/.api/primaryOrder", primaryOrderRoutes);
+app.use("/api/primaryOrder", primaryOrderRoutes);
 
 app.get("/", (req: Request, res: Response) => {
     res.json({

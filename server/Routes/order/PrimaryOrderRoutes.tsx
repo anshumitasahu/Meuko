@@ -4,7 +4,7 @@ import { middleware } from "../../utils/middlewares";
 
 const router = express.Router();
 
-router.get("/get/:id", getPrimaryOrders);
+router.get("/get", getPrimaryOrders);
 router.post("/create/:id", middleware, CreatePrimaryOrderController);
 
 export default router;
