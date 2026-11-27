@@ -6,6 +6,6 @@ import { CreateDistributors, getDistributor } from "../Controller/DistributorCon
 const router = express.Router();
 
 router.get("/get", getDistributor);
-router.post("/create", middleware, CreateDistributors);
+router.post("/create", middleware("Admin"), CreateDistributors);
 
 export default router;

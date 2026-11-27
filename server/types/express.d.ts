@@ -1,12 +1,14 @@
+import type { UserRole } from "../../middleware/auth";
+
 declare global {
     namespace Express {
         interface Request {
             user?: {
-                id: int,
-                role: string;
-            }
+                id: number;
+                role: UserRole;
+            };
         }
     }
 }
 
-export { }
+export { };

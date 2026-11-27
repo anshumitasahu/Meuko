@@ -4,7 +4,7 @@ import { middleware } from "../utils/middlewares";
 
 const router = express.Router();
 
-router.post("/create", middleware, CreateSalesman);
+router.post("/create", middleware("Admin"), CreateSalesman);
 router.get("/get", GetSalesman);
 
 export default router;
