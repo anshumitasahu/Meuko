@@ -4,6 +4,7 @@ import Distributor from "./components/pages/Distributor"
 import Orders from "./components/pages/Order"
 import NavBar from "./components/ui/layout/NavBar"
 import Login from "./components/authPages/Login"
+import CreatePrimaryOrder from "./components/pages/CreatePrimaryOrder"
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
             <Route path="/customers" element={<Customer />} />
             <Route path="/distributors" element={<Distributor />} />
             <Route path="/orders" element={<Orders />} />
+            <Route path="/createPrimaryOrder" element={<CreatePrimaryOrder />} />
           </Routes>
         </BrowserRouter>
       </div>
