@@ -75,3 +75,36 @@ export const getSecondaryOrder = async (req: Request, res: Response) => {
         })
     }
 }
+
+export const getSecondaryOrdersForSalesman = async (req: Request, res: Response) => {
+    try {
+        const ordersForSalesman = await prisma.secondaryOrder.findMany({
+            where: {
+                salesmanId: req.user?.id
+            },
+            include: {
+                customer: true,
+                orderItems: {
+                    include: {
+                        product: true
+                    }
+                }
+            },
+            orderBy: {
+                id: "asc"
+            }
+        });
+
+        return res.status(200).json({
+            success: true,
+            message: "Primary Orders for the particular salesman fetched successfully",
+            data: ordersForSalesman
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: false,
+            data: null
+        })
+    }
+}

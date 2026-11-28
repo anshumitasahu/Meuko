@@ -1,5 +1,6 @@
 import type { Request, Response } from "express"
 import { prisma } from "../../lib/prismaClient";
+import { success } from "zod";
 
 export const CreatePrimaryOrderController = async (req: Request, res: Response) => {
     try {
@@ -75,6 +76,39 @@ export const getPrimaryOrders = async (req: Request, res: Response) => {
         return res.status(500).json({
             success: false,
             message: "getPrimaryOrders: Internal Error",
+            data: null
+        })
+    }
+}
+
+export const getPrimaryOrdersForSalesman = async (req: Request, res: Response) => {
+    try {
+        const ordersForSalesman = await prisma.primaryOrder.findMany({
+            where: {
+                salesmanId: req.user?.id
+            },
+            include: {
+                distributor: true,
+                orderItems: {
+                    include: {
+                        product: true
+                    }
+                }
+            },
+            orderBy: {
+                id: "asc"
+            }
+        });
+
+        return res.status(200).json({
+            success: true,
+            message: "Primary Orders for the particular salesman fetched successfully",
+            data: ordersForSalesman
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: false,
             data: null
         })
     }
