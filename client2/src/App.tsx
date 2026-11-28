@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Customer from "./components/pages/Customer"
 import Distributor from "./components/pages/Distributor"
-import Orders from "./components/pages/Order"
 import NavBar from "./components/ui/layout/NavBar"
 import Login from "./components/authPages/Login"
 import CreatePrimaryOrder from "./components/pages/CreatePrimaryOrder"
 import CreateSecondaryOrder from "./components/pages/CreateSecondaryOrder"
+import Orders from "./components/pages/Order/Order"
 
 function App() {
 
