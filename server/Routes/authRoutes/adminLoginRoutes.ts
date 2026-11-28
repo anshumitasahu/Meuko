@@ -7,7 +7,7 @@ import { middleware } from "../../utils/middlewares";
 const router = express.Router();
 
 router.post("/login", adminLogin);
-router.get("/me", middleware, Me);
+router.get("/me", middleware('Admin'), Me);
 
 export default router;
 

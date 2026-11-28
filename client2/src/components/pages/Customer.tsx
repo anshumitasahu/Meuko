@@ -36,6 +36,7 @@ export default function Customer() {
             customer.email.toLowerCase().includes(input)
         );
     })
+
     return (
         <div className="p-3 w-full">
             <h1 className="text-md pb-4 font-bold text-[#352206]">Customers</h1>
@@ -82,7 +83,7 @@ export default function Customer() {
                                     </div>
                                     <div>
                                         <button
-                                            onClick={() => navigate("/createPrimaryOrder")}
+                                            onClick={() => navigate(`/createSecondaryOrder/${customer.id}`)}
                                         >
                                             <ChevronRight />
                                         </button>
@@ -103,9 +104,12 @@ export default function Customer() {
                             <p className="text-center text-neutral-500 text-sm">
                                 We couldn't find any customers matching '{query}'. Try another search.
                             </p>
-                            <p className="text-red-600 text-xs">
+                            <button
+                                className="text-red-600 text-xs"
+                                onClick={() => setQuery("")}
+                            >
                                 Clear search
-                            </p>
+                            </button>
                         </div>
                     }
                 </div>

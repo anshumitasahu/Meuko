@@ -4,10 +4,16 @@ import { prisma } from "../../lib/prismaClient";
 export const CreateSecondaryOrderController = async (req: Request, res: Response) => {
     try {
         const { customerId, items } = req.body;
+        const salesmanId = req.user?.id
+
+        if (!salesmanId) {
+            throw new Error("salesmanId is required");
+        }
 
         const order = await prisma.secondaryOrder.create({
             data: {
                 customerId,
+                salesmanId,
                 orderItems: {
                     create: items.map((item: any) => ({
                         productId: item.productId,
@@ -17,6 +23,7 @@ export const CreateSecondaryOrderController = async (req: Request, res: Response
             },
             include: {
                 customer: true,
+                createdBy: true,
                 orderItems: {
                     include: {
                         product: true

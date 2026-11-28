@@ -10,4 +10,10 @@ export const API_ROUTES = {
     DISTRIBUTORS: {
         GET: `${API_BASE}/api/distributors/get`
     },
+    PRIMARYORDER: {
+        POST: (id: number) => `${API_BASE}/api/primaryOrder/create/${id}`
+    },
+    SECONDARYORDER: {
+        POST: (id: number) => `${API_BASE}/api/secondaryOrder/create/${id}`
+    }
 }

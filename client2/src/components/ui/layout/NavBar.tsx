@@ -4,8 +4,13 @@ import { NavLink, useLocation } from "react-router-dom";
 export default function NavBar() {
 
     const location = useLocation();
-    const hideNavBarPaths = ['/', '/createPrimaryOrder'];
-    const showNavBar = !hideNavBarPaths.includes(location.pathname)
+    const hideNavBarPaths = ['/', '/createPrimaryOrder/', '/createSecondaryOrder/'];
+
+    const showNavBar = !hideNavBarPaths.some((path) =>
+        path === '/'
+            ? location.pathname === '/'
+            : location.pathname.startsWith(path)
+    );
 
 
     const getLinkClass = (path: string) => {

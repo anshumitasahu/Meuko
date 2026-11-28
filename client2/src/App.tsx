@@ -5,6 +5,7 @@ import Orders from "./components/pages/Order"
 import NavBar from "./components/ui/layout/NavBar"
 import Login from "./components/authPages/Login"
 import CreatePrimaryOrder from "./components/pages/CreatePrimaryOrder"
+import CreateSecondaryOrder from "./components/pages/CreateSecondaryOrder"
 
 function App() {
 
@@ -18,7 +19,8 @@ function App() {
             <Route path="/customers" element={<Customer />} />
             <Route path="/distributors" element={<Distributor />} />
             <Route path="/orders" element={<Orders />} />
-            <Route path="/createPrimaryOrder" element={<CreatePrimaryOrder />} />
+            <Route path="/createPrimaryOrder/:id" element={<CreatePrimaryOrder />} />
+            <Route path="/createSecondaryOrder/:id" element={<CreateSecondaryOrder />} />
           </Routes>
         </BrowserRouter>
       </div>

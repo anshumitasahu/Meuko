@@ -3,11 +3,18 @@ import { prisma } from "../../lib/prismaClient";
 
 export const CreatePrimaryOrderController = async (req: Request, res: Response) => {
     try {
-        const { distributorId, items } = req.body;
+        const distributorId = Number(req.params.id);
+        const salesmanId = req.user?.id
+        const { items } = req.body;
+
+        if (!salesmanId) {
+            throw new Error("salesmanId is required");
+        }
 
         const order = await prisma.primaryOrder.create({
             data: {
                 distributorId,
+                salesmanId,
                 orderItems: {
                     create: items.map((item: any) => ({
                         productId: item.productId,
@@ -17,6 +24,7 @@ export const CreatePrimaryOrderController = async (req: Request, res: Response) 
             },
             include: {
                 distributor: true,
+                createdBy: true,
                 orderItems: {
                     include: {
                         product: true
@@ -31,6 +39,7 @@ export const CreatePrimaryOrderController = async (req: Request, res: Response) 
             data: order
         })
     } catch (error) {
+        console.log("Error:", error)
         return res.status(500).json({
             success: false,
             message: "createPrimaryOrder: Internal Error",
@@ -44,6 +53,7 @@ export const getPrimaryOrders = async (req: Request, res: Response) => {
         const orders = await prisma.primaryOrder.findMany({
             include: {
                 distributor: true,
+                salesman: true,
                 orderItems: {
                     include: {
                         product: true

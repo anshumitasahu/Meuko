@@ -27,11 +27,14 @@ model Salesman {
   email    String @unique
   password String
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  isActive  Boolean  @default(true)
-  createdBy String   @default("system")
-  updatedBy String   @default("system")
+  primaryOrders PrimaryOrder[]
+
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  isActive        Boolean          @default(true)
+  createdBy       String           @default("system")
+  updatedBy       String           @default("system")
+  secondaryOrders SecondaryOrder[]
 }
 
 model Products {
@@ -73,16 +76,18 @@ model Distributor {
 
   primaryOrders PrimaryOrder[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  isActive  Boolean  @default(true)
-  createdBy String   @default("system")
-  updatedBy String   @default("system")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  isActive   Boolean  @default(true)
+  createdBy  String   @default("system")
+  updatedBy  String   @default("system")
+  salesmanId Int?
 }
 
 model PrimaryOrder {
   id            Int @id @default(autoincrement())
   distributorId Int
+  salesmanId    Int
 
   distributor Distributor  @relation(fields: [distributorId], references: [id])
   orderItems  OrderItems[]
@@ -90,13 +95,14 @@ model PrimaryOrder {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   isActive  Boolean  @default(true)
-  createdBy String   @default("system")
+  createdBy Salesman @relation(fields: [salesmanId], references: [id])
   updatedBy String   @default("system")
 }
 
 model SecondaryOrder {
   id         Int @id @default(autoincrement())
   customerId Int
+  salesmanId Int
 
   customer   Customer     @relation(fields: [customerId], references: [id])
   orderItems OrderItems[]
@@ -104,7 +110,7 @@ model SecondaryOrder {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   isActive  Boolean  @default(true)
-  createdBy String   @default("system")
+  createdBy Salesman @relation(fields: [salesmanId], references: [id])
   updatedBy String   @default("system")
 }
 
