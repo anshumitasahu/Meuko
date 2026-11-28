@@ -11,9 +11,11 @@ export const API_ROUTES = {
         GET: `${API_BASE}/api/distributors/get`
     },
     PRIMARYORDER: {
-        POST: (id: number) => `${API_BASE}/api/primaryOrder/create/${id}`
+        POST: (id: number) => `${API_BASE}/api/primaryOrder/create/${id}`,
+        GET: `${API_BASE}/api/primaryOrder/getMyOrders`
     },
     SECONDARYORDER: {
-        POST: (id: number) => `${API_BASE}/api/secondaryOrder/create/${id}`
+        POST: (id: number) => `${API_BASE}/api/secondaryOrder/create/${id}`,
+        GET: `${API_BASE}/api/secondaryOrder/getMyOrders`
     }
 }
