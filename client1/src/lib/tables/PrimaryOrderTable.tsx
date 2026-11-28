@@ -12,7 +12,20 @@ export const columns: ColumnDef<PrimaryOrder>[] = [
     },
     {
         accessorKey: "items",
-        header: "Order Items"
+        header: "Order Items",
+        cell: ({ row }) => {
+            const items = row.original.orderItems || [];
+            const maxLength = 50;
+
+            const fullText = items.map((item) => `${item.product.name} (x${item.quantity})`).join(', ');
+
+            const displayText =
+                fullText.length > maxLength
+                    ? `${fullText.slice(0, maxLength)}...`
+                    : fullText;
+
+            return <span title={fullText}>{displayText}</span>;
+        },
     },
     {
         accessorKey: "createdAt",

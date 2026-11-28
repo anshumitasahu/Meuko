@@ -53,7 +53,7 @@ export const getPrimaryOrders = async (req: Request, res: Response) => {
         const orders = await prisma.primaryOrder.findMany({
             include: {
                 distributor: true,
-                salesman: true,
+                createdBy: true,
                 orderItems: {
                     include: {
                         product: true
@@ -71,6 +71,7 @@ export const getPrimaryOrders = async (req: Request, res: Response) => {
             data: orders
         })
     } catch (error) {
+        console.log("Error:", error)
         return res.status(500).json({
             success: false,
             message: "getPrimaryOrders: Internal Error",

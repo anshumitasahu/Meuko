@@ -12,18 +12,19 @@ export const columns: ColumnDef<SecondaryOrder>[] = [
     },
     {
         accessorKey: "orderItems",
-        header: "Order Items", cell: ({ row }) => {
+        header: "Order Items",
+        cell: ({ row }) => {
             const items = row.original.orderItems || [];
+            const maxLength = 50;
 
-            return (
-                <ul className="list-disc pl-4">
-                    {items.map((item, index) => (
-                        <li key={item.id || index}>
-                            {item.id} (x{item.quantity})
-                        </li>
-                    ))}
-                </ul>
-            );
+            const fullText = items.map((item) => `${item.product.name} (x${item.quantity})`).join(', ');
+
+            const displayText =
+                fullText.length > maxLength
+                    ? `${fullText.slice(0, maxLength)}...`
+                    : fullText;
+
+            return <span title={fullText}>{displayText}</span>;
         },
     },
     {
